@@ -43,7 +43,7 @@ export default function App() {
 
   return (
     <div className="container">
-      <h1>Sistema de Notas e Frequência — Dti Digital</h1>
+      <h1>Sistema de Notas e Frequência</h1>
       <StudentForm onAdd={addStudent} />
       <StudentTable students={students} onDelete={deleteStudent} />
       <StatsPanel stats={stats} />
