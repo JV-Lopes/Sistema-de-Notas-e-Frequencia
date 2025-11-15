@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styles from '../components/Layout.module.css';
 
 export default function StudentForm({ onAdd }) {
   const [nome, setNome] = useState('');
@@ -16,12 +17,19 @@ export default function StudentForm({ onAdd }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Cadastrar Aluno</h2>
-      <input value={nome} onChange={e => setNome(e.target.value)} placeholder="Nome" required />
+    <form className={styles.form} onSubmit={handleSubmit}>
+      <h2 className={styles.title}>Cadastrar Aluno</h2>
+      <input
+        className={styles.input}
+        value={nome}
+        onChange={e => setNome(e.target.value)}
+        placeholder="Nome"
+        required
+      />
       {notas.map((n, i) => (
         <input
           key={i}
+          className={styles.input}
           value={n}
           onChange={e => {
             const newNotas = [...notas];
@@ -37,6 +45,7 @@ export default function StudentForm({ onAdd }) {
         />
       ))}
       <input
+        className={styles.input}
         value={frequencia}
         onChange={e => setFrequencia(e.target.value)}
         type="number"
@@ -45,7 +54,7 @@ export default function StudentForm({ onAdd }) {
         placeholder="Frequência (%)"
         required
       />
-      <button type="submit">Adicionar</button>
+      <button className={styles.submitBtn} type="submit">Adicionar</button>
     </form>
   );
 }

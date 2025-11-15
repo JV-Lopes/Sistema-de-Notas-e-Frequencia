@@ -13,3 +13,33 @@ function classAverages(students) {
 }
 
 export default function handler(req, res) {
+  if (req.method !== 'GET') {
+    return res.status(405).json({ error: 'Método não permitido.' });
+  }
+
+  const withAvg = students.map(s => ({
+    ...s,
+    media: calcStudentAverage(s.notas)
+  }));
+
+  const mediasPorDisciplina = classAverages(students);
+
+  const mediaGeralTurma = withAvg.length
+    ? +(withAvg.reduce((soma, aluno) => soma + aluno.media, 0) / withAvg.length).toFixed(2)
+    : 0;
+
+  const acimaDaMedia = withAvg
+    .filter(s => s.media > mediaGeralTurma)
+    .map(s => s.nome);
+
+  const freqAbaixo = students
+    .filter(s => s.frequencia < 75)
+    .map(s => s.nome);
+
+  return res.status(200).json({
+    mediasPorDisciplina,
+    mediaGeralTurma,
+    acimaDaMedia,
+    freqAbaixo
+  });
+}
