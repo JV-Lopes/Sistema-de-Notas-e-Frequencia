@@ -62,7 +62,6 @@ O servidor ficará disponível em http://localhost:4000/api.
 2. Front-end
    
 ```bash
-Copiar código
 cd frontend
 npm install
 npm run dev
@@ -70,7 +69,7 @@ O front-end estará disponível em http://localhost:5173 (ou a porta exibida pel
 
 ```
 
-### 📂 Estrutura do projeto
+📂 Estrutura do projeto
 
 project-dti/
 ├─ backend/
