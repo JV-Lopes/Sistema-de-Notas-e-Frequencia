@@ -34,9 +34,6 @@ O sistema permite que um professor gerencie as notas e a frequência de seus alu
 João 7 8 6 9 10 80%
 Maria 7 8 6 9 10 70%
 
-makefile
-Copiar código
-
 **Saída:**
 
 João 8.0 80%
