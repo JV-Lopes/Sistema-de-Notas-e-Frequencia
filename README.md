@@ -110,7 +110,7 @@ Tooltips simples com CSS para mostrar as notas dos alunos
 
 Back-end em Express com rotas REST simples, mantendo fácil integração com o front
 
-⚠ Observações
+## ⚠ Observações
 Não há persistência real de dados; ao reiniciar o servidor, todos os alunos cadastrados são perdidos.
 
 Testes unitários são opcionais e não foram implementados neste projeto.
