@@ -71,6 +71,7 @@ O front-end estará disponível em http://localhost:5173 (ou a porta exibida pel
 
 📂 Estrutura do projeto
 
+```
 project-dti/
 ├─ backend/
 │  ├─ index.js
@@ -88,6 +89,8 @@ project-dti/
 │  │     └─ index.css
 ├─ README.md
 └─ package.json
+
+```
 
 ### 📌 Premissas assumidas
 O back-end armazena os alunos em memória (não há banco de dados persistente)
