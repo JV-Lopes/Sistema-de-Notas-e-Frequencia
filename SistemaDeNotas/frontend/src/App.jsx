@@ -7,16 +7,28 @@ export default function App() {
   const [students, setStudents] = useState([]);
   const [stats, setStats] = useState(null);
 
+  // Busca lista de alunos
   async function fetchStudents() {
-    const res = await fetch('/api/students');
-    const data = await res.json();
-    setStudents(data);
+    try {
+      const res = await fetch('/api/students');
+      if (!res.ok) throw new Error('Erro ao buscar alunos');
+      const data = await res.json();
+      setStudents(data);
+    } catch (err) {
+      console.error('Erro ao buscar alunos:', err);
+    }
   }
 
+  // Busca estatísticas da turma
   async function fetchStats() {
-    const res = await fetch('/api/students/stats');
-    const data = await res.json();
-    setStats(data);
+    try {
+      const res = await fetch('/api/students-stats'); // ✅ rota separada
+      if (!res.ok) throw new Error('Erro ao buscar estatísticas');
+      const data = await res.json();
+      setStats(data);
+    } catch (err) {
+      console.error('Erro ao buscar estatísticas:', err);
+    }
   }
 
   useEffect(() => {
@@ -24,21 +36,31 @@ export default function App() {
     fetchStats();
   }, []);
 
+  // Adiciona aluno
   async function addStudent(student) {
-    await fetch('/api/students', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(student)
-    });
-    await fetchStudents();
-    await fetchStats();
+    try {
+      await fetch('/api/students', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(student)
+      });
+      await fetchStudents();
+      await fetchStats();
+    } catch (err) {
+      console.error('Erro ao adicionar aluno:', err);
+    }
   }
 
+  // Remove aluno
   async function deleteStudent(id) {
     if (!confirm("Tem certeza que deseja excluir este aluno?")) return;
-    await fetch(`/api/students?id=${id}`, { method: "DELETE" });
-    await fetchStudents();
-    await fetchStats();
+    try {
+      await fetch(`/api/students?id=${id}`, { method: "DELETE" });
+      await fetchStudents();
+      await fetchStats();
+    } catch (err) {
+      console.error('Erro ao excluir aluno:', err);
+    }
   }
 
   return (
