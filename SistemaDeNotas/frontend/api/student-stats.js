@@ -1,4 +1,4 @@
-let students = []; // Se quiser compartilhar, use armazenamento externo
+let students = []; // Se quiser persistência real, use banco de dados
 
 function calcStudentAverage(notas) {
   const sum = notas.reduce((s, v) => s + v, 0);
@@ -13,7 +13,9 @@ function classAverages(students) {
 }
 
 export default function handler(req, res) {
-  if (req.method !== 'GET') return res.status(405).json({ error: 'Método não permitido.' });
+  if (req.method !== 'GET') {
+    return res.status(405).json({ error: 'Método não permitido.' });
+  }
 
   const withAvg = students.map(s => ({ ...s, media: calcStudentAverage(s.notas) }));
   const mediasPorDisciplina = classAverages(students);
@@ -23,5 +25,10 @@ export default function handler(req, res) {
   const acimaDaMedia = withAvg.filter(s => s.media > mediaGeralTurma).map(s => s.nome);
   const freqAbaixo = students.filter(s => s.frequencia < 75).map(s => s.nome);
 
-  return res.status(200).json({ mediasPorDisciplina, mediaGeralTurma, acimaDaMedia, freqAbaixo });
+  return res.status(200).json({
+    mediasPorDisciplina,
+    mediaGeralTurma,
+    acimaDaMedia,
+    freqAbaixo
+  });
 }
