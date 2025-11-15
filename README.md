@@ -1,6 +1,5 @@
-# Sistema de Notas e Frequência — Projeto DTI
+# Sistema de Notas e Frequência
 
-Este é um projeto desenvolvido como teste para o processo seletivo da DTI Digital.  
 O sistema permite que um professor gerencie as notas e a frequência de seus alunos de forma simples e eficiente.
 
 ---
